@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  namespace: dev
+  name: web-demo-deployment
+spec:
+  selector:
+    matchLabels:
+      app: web-demo
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: web-demo
+    spec:
+      containers:
+      -
+        name: web-demo
+        image: nginx
+        ports:
+        -
+          containerPort:80
+---
+#service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dev
+  name: web-svc
+spec:
+  ports:
+  -
+    port:80
+    protocol: TP
+    targetPort: 80
+  selector:
+    app: web-demo
+  type: ClusterIP
+
+---
+#Ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: dev
+  name: ingress-demo
+spec:
+  rules:
+  -
+    host: namespace.test.com
+    http:
+    paths:
+    -
+      path: /
+      backend:
+        serviceName: web-svc
+        servicePort: 80
+    
