@@ -31,7 +31,7 @@ spec:
   ports:
   -
     port: 80
-    protocol: TP
+    protocol: TCP
     targetPort: 80
   selector:
     app: web-demo
