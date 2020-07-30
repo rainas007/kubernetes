@@ -30,7 +30,7 @@ metadata:
 spec:
   ports:
   -
-    port:80
+    port: 80
     protocol: TP
     targetPort: 80
   selector:
@@ -48,11 +48,11 @@ spec:
   rules:
   -
     host: namespace.test.com
-    http:
-    paths:
-    -
-      path: /
-      backend:
-        serviceName: web-svc
-        servicePort: 80
+      http:
+      paths:
+      -
+        path: /
+        backend:
+          serviceName: web-svc
+          servicePort: 80
     
