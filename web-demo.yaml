@@ -48,7 +48,7 @@ spec:
   rules:
   -
     host: namespace.test.com
-      http:
+    http:
       paths:
       -
         path: /
